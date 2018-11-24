@@ -3,6 +3,8 @@ class Item < ApplicationRecord
   has_many :stores, through: :item_stores, dependent: :destroy
   belongs_to :category, optional: :true
 
+  scope :needed, -> { where(purchased: false) }
+
   accepts_nested_attributes_for :item_stores
   accepts_nested_attributes_for :stores
 

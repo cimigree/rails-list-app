@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+  <h2>Stores</h2>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <%= link_to "Add New Store", new_store_path, class: "btn btn-large btn-secondary" %>
+    </div>
+  </div>
+</div>
+<table class="table table-striped clearance_batches">
+  <thead>
+    <tr>
+      <th>Store</th>
+      <th>Edit Store</th>
+      <th>Delete Store</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @stores.each do |store| -%>
+    <tr>
+      <td><%= link_to store.name, store %></td>
+      <td><%= link_to icon("fas", "pencil-alt"), store %></td>
+      <td><%= link_to icon("fas", "trash-alt"), store, method: :delete, data: { confirm: "You sure?" }%></td>
+    </tr>
+    <% end %>
+  </tbody>

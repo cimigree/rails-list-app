@@ -22,23 +22,23 @@
               <%= link_to 'All Items', items_path, class: "nav-link" %>
             </li>
             <li role="presentation" class=<%= (stores_active || "") + " nav-item" %>>
-              <%= link_to 'Stores', stores_path, class: "nav-link" %>
+              <%= link_to 'All Stores', stores_path, class: "nav-link" %>
             </li>
             <li role="presentation" class=<%= (categories_active || "") + " nav-item" %>>
-              <%= link_to 'Categories', categories_path, class: "nav-link" %>
+              <%= link_to 'All Categories', categories_path, class: "nav-link" %>
             </li>
             <li role="presentation" class=<%= (item_new_active || "") + " nav-item" %>>
               <%= link_to 'Add Item', new_item_path, class: "nav-link" %>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stores <span class="caret"></span></a>
+            <li class="dropdown nav-link">
+              <a link_to class="dropdown-toggle" data-toggle="dropdown">Items by Store <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li>
                   <%= link_to 'All', root_path %>
                 </li>
                   <% Store.order('name ASC').each do |store| %>
                 <li>
-                  <%= link_to store.name, '#' %>
+                  <%= link_to store.name, store %>
                 </li>
                 <% end %>
               </ul>

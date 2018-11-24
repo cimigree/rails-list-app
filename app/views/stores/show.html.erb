@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-  <h2>Current Items</h2>
+  <h2><%= @store.name %></h2>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
       <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-secondary" %>
@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <%- @items.each do |item| -%>
+  <%- @items_by_store.each do |item| -%>
     <tr>
       <td><%= item.purchased %></td>
       <td><%= item.name %></td>
@@ -29,7 +29,7 @@
       <td><%= item.note %></td>
       <td><%= item.category ? item.category.name : ''  %></td>
       <td><%= link_to icon("fas", "pencil-alt"), item %></td>
-      <td><%= link_to icon("fas", "trash-alt"), item, method: :delete, data: { confirm: "You sure?" } %></td>
+      <td><%= icon("fas", "trash-alt") %></td>
     </tr>
     <%- end -%>
   </tbody>

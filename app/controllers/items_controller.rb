@@ -3,15 +3,15 @@ class ItemsController < ApplicationController
   
   def index
     Frequency::ResetPurchased.process()
-    @items = Item.where(purchased: false).includes(:category).order(name: :asc)
+    @items = Item.needed.includes(:category).order(name: :asc)
   end
 
   def items_all
-    Item.all.includes(:category).order(name: :asc)
+    @items = Item.all.includes(:category).order(name: :asc)
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item
   end
 
   def new
@@ -20,11 +20,11 @@ class ItemsController < ApplicationController
 
   def create
     store_ids = params[:item][:store_ids]
-    @item = Item.create(item_params)
     @item = Item.create(item_params.except("store_ids"))
     @item.store_ids = store_ids
     if @item.save
-      redirect_to @item
+      flash[:notice] = "#{@item.name} created"
+      redirect_to 'index'
     else
       render 'new'
     end
@@ -42,6 +42,8 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
+    flash[:notice] = "Item deleted"
+    redirect_to items_url
   end
 
   private
