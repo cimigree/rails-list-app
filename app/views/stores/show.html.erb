@@ -9,7 +9,7 @@
 <table class="table table-striped clearance_batches">
   <thead>
     <tr>
-      <th>In Cart</th>
+      <th></th>
       <th>Item</th>
       <th>Brand</th>    
       <th>Quantity</th>  
@@ -22,7 +22,7 @@
   <tbody>
   <%- @items_by_store.each do |item| -%>
     <tr>
-      <td><%= item.purchased %></td>
+      <td><%= link_to "Purchase", update_purchased_item_url(item), method: :put, class: "btn btn-sm btn-outline-secondary" %></td>
       <td><%= item.name %></td>
       <td><%= item.brand_name %></td>
       <td><%= item.quantity %></td>

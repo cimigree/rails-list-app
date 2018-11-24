@@ -18,7 +18,7 @@
     <%- @categories.each do |category| -%>
     <tr>
       <td><%= category.name %></td>
-      <td><%= link_to icon("fas", "pencil-alt"), category %></td>
+      <td><%= link_to icon("fas", "pencil-alt"), edit_category_path(category) %></td>
       <td><%= link_to icon("fas", "trash-alt"), category, method: :delete, data: { confirm: "You sure?" } %></td>
     </tr>
     <% end %>

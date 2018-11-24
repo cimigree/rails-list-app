@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :item, only: %i[show update destroy]
+  before_action :item, only: %i[show edit update update_purchased destroy]
   
   def index
     Frequency::ResetPurchased.process()
@@ -24,20 +24,33 @@ class ItemsController < ApplicationController
     @item.store_ids = store_ids
     if @item.save
       flash[:notice] = "#{@item.name} created"
-      redirect_to 'index'
+      redirect_to items_url
     else
       render 'new'
     end
   end
 
-  def update
-    unless @item.purchased
-      if params[:item][:purchased] == true
-        @date_purchased = Date.today()
-      end
-    end
-    @item.update_attributes(item_params)
+  def edit
+    @item    
+  end
+
+  def update_purchased
+    @item.update_attributes({purchased: true, date_purchased: Date.today()})
     Frequency::CalcNextPurchaseDate.process(@item.id) if @item.purchased == true
+    redirect_to items_url
+  end
+
+  def update
+    store_ids = params[:item][:store_ids]
+    @item.update_attributes(item_params.except("store_ids"))
+    @item.store_ids = store_ids
+    if @item.save
+      flash[:notice] = "#{@item.name} updated"
+      redirect_to items_url
+    else
+      render 'edit'
+    end
+
   end
 
   def destroy

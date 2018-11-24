@@ -31,16 +31,16 @@
               <%= link_to 'Add Item', new_item_path, class: "nav-link" %>
             </li>
             <li class="dropdown nav-link">
-              <a link_to class="dropdown-toggle" data-toggle="dropdown">Items by Store <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button">Items by Store <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
                   <%= link_to 'All', root_path %>
                 </li>
-                  <% Store.order('name ASC').each do |store| %>
-                <li>
+                  <% Store.all.order(name: :asc).each do |store| %>
+                <li class="dropdown-item">
                   <%= link_to store.name, store %>
                 </li>
-                <% end %>
+                  <% end %>
               </ul>
             </li>
           </ul>

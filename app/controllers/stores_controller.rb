@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  before_action :store, only: %i[show all_items update destroy]
+  before_action :store, only: %i[show edit all_items update destroy]
 
   def index
     @stores = Store.all.order(name: :asc)
@@ -36,7 +36,7 @@ class StoresController < ApplicationController
     @store
     if @store.update_attributes(store_params)
       flash[:notice] = "Store updated"
-      render 'index'
+      redirect_to stores_path
     else
       render 'edit'
     end

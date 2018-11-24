@@ -18,7 +18,7 @@
     <%- @stores.each do |store| -%>
     <tr>
       <td><%= link_to store.name, store %></td>
-      <td><%= link_to icon("fas", "pencil-alt"), store %></td>
+      <td><%= link_to icon("fas", "pencil-alt"), edit_store_path(store) %></td>
       <td><%= link_to icon("fas", "trash-alt"), store, method: :delete, data: { confirm: "You sure?" }%></td>
     </tr>
     <% end %>

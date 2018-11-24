@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     collection do
       get :items_all
     end
+    member do 
+      put :update_purchased
+    end
   end
   root to: "items#index"
 end
