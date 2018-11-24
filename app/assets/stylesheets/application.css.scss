@@ -1,9 +1,14 @@
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+/*
+ *= require_tree .
+ *= require_self
+ */
 
 $gray-medium-light: #eaeaea;
 $state-danger-text: #d9534f;
-
-
+ 
 body > .container {
   padding: 70px 15px 0;
 }
@@ -16,12 +21,12 @@ body > .container {
   }
 }
 
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
+// .field_with_errors {
+//   @extend .has-error;
+//   .form-control {
+//     color: $state-danger-text;
+//   }
+// }
 
 .error-message {
   color: #d9534f;

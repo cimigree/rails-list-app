@@ -10,20 +10,55 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "sample app", '#', id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   '#' %></li>
-            <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <%= link_to "Current Items", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li role="presentation" class=<%= (items_active || "") + " nav-item" %>>
+              <%= link_to 'All Items', items_path, class: "nav-link" %>
+            </li>
+            <li role="presentation" class=<%= (stores_active || "") + " nav-item" %>>
+              <%= link_to 'Stores', stores_path, class: "nav-link" %>
+            </li>
+            <li role="presentation" class=<%= (categories_active || "") + " nav-item" %>>
+              <%= link_to 'Categories', categories_path, class: "nav-link" %>
+            </li>
+            <li role="presentation" class=<%= (item_new_active || "") + " nav-item" %>>
+              <%= link_to 'Add Item', new_item_path, class: "nav-link" %>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stores <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <%= link_to 'All', root_path %>
+                </li>
+                  <% Store.order('name ASC').each do |store| %>
+                <li>
+                  <%= link_to store.name, '#' %>
+                </li>
+                <% end %>
+              </ul>
+            </li>
           </ul>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
-    <div class="container">
+    <main role="main" class="container">
+      <%- if flash[:notice] -%>
+        <div class="alert alert-info" role="alert">
+          <%= flash[:notice].html_safe %>
+        </div>
+      <%- end -%>
+      <%- if flash[:alert] -%>
+        <div class="alert alert-danger" role="alert">
+          <%= flash[:alert].html_safe %>
+        </div>
+      <%- end -%>
       <%= yield %>
-    </div>
+    </main>
   </body>
 </html>
