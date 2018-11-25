@@ -6,7 +6,7 @@ class StoresController < ApplicationController
   end
 
   def show
-    @items_by_store = @store.items
+    @items_by_store = @store.items.joins(:category).merge(Category.order(name: :asc))
     @store
   end
 

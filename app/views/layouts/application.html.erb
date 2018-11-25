@@ -19,14 +19,30 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li role="presentation" class=<%= (stores_active || "") + " nav-item" %>>
-              <%= link_to 'All Stores', stores_path, class: "nav-link" %>
-            </li>
-            <li role="presentation" class=<%= (categories_active || "") + " nav-item" %>>
-              <%= link_to 'All Categories', categories_path, class: "nav-link" %>
-            </li>
             <li role="presentation" class=<%= (item_new_active || "") + " nav-item" %>>
               <%= link_to 'Add Item', new_item_path, class: "nav-link" %>
+            </li>
+            <li class="dropdown nav-link">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button">Stores <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <%= link_to 'All Stores', stores_path %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to 'Add New Store', new_store_path %>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown nav-link">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button">Categories <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <%= link_to 'All Categories', categories_path %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to 'Add New Category', new_category_path %>
+                </li>
+              </ul>
             </li>
             <li class="dropdown nav-link">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button">Items by Store <span class="caret"></span></a>
@@ -37,6 +53,19 @@
                   <% Store.all.order(name: :asc).each do |store| %>
                 <li class="dropdown-item">
                   <%= link_to store.name, store %>
+                </li>
+                  <% end %>
+              </ul>
+            </li>
+            <li class="dropdown nav-link">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button">Items by Category <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <%= link_to 'All', root_path %>
+                </li>
+                  <% Category.all.order(name: :asc).each do |category| %>
+                <li class="dropdown-item">
+                  <%= link_to category.name, category %>
                 </li>
                   <% end %>
               </ul>
