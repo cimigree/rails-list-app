@@ -13,15 +13,12 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <%= link_to "Current Items", root_path, class: "navbar-brand" %>
+        <%= link_to "Items to Buy", root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li role="presentation" class=<%= (items_active || "") + " nav-item" %>>
-              <%= link_to 'All Items', items_path, class: "nav-link" %>
-            </li>
             <li role="presentation" class=<%= (stores_active || "") + " nav-item" %>>
               <%= link_to 'All Stores', stores_path, class: "nav-link" %>
             </li>

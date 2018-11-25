@@ -6,7 +6,7 @@ class StoresController < ApplicationController
   end
 
   def show
-    @items_by_store = @store.items.needed
+    @items_by_store = @store.items
     @store
   end
 

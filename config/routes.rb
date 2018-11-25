@@ -8,9 +8,6 @@ Rails.application.routes.draw do
     end
   end
   resources :items do
-    collection do
-      get :items_all
-    end
     member do 
       put :update_purchased
     end

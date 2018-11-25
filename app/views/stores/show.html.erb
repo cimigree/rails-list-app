@@ -2,35 +2,14 @@
   <h2><%= @store.name %></h2>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
-      <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-secondary" %>
+      <%= link_to "Current Items", store_path(group_by: "current_items"), class: "btn btn-large btn-outline-info" %>
+      <%= link_to "All Items", store_path(group_by: "all_items"), class: "btn btn-large btn-outline-info" %>
+      <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-outline-info" %>
     </div>
   </div>
 </div>
-<table class="table table-striped clearance_batches">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Item</th>
-      <th>Brand</th>    
-      <th>Quantity</th>  
-      <th>Notes</th>
-      <th>Category</th>
-      <th>Edit Item</th>
-      <th>Delete Item</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%- @items_by_store.each do |item| -%>
-    <tr>
-      <td><%= link_to "Purchase", update_purchased_item_url(item), method: :put, class: "btn btn-sm btn-outline-secondary" %></td>
-      <td><%= item.name %></td>
-      <td><%= item.brand_name %></td>
-      <td><%= item.quantity %></td>
-      <td><%= item.note %></td>
-      <td><%= item.category ? item.category.name : ''  %></td>
-      <td><%= link_to icon("fas", "pencil-alt"), item %></td>
-      <td><%= icon("fas", "trash-alt") %></td>
-    </tr>
-    <%- end -%>
-  </tbody>
-</table>
+<% if params[:group_by] == "all_items" %>
+  <%= render partial: 'items/items', locals: {items: @items_by_store} %>
+<% else params[:group_by] == "current_items" %>
+  <%= render partial: 'items/items', locals: {items: @items_by_store.needed} %>
+<% end %>

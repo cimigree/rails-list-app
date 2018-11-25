@@ -10,6 +10,7 @@
   <thead>
     <tr>
       <th>Category</th>
+      <th>Number of Items</th>
       <th>Edit Category</th>
       <th>Delete Category</th>
     </tr>
@@ -17,7 +18,8 @@
   <tbody>
     <%- @categories.each do |category| -%>
     <tr>
-      <td><%= category.name %></td>
+      <td><%= link_to category.name, category%></td>
+      <td><%= category.item_ids.count %></td>
       <td><%= link_to icon("fas", "pencil-alt"), edit_category_path(category) %></td>
       <td><%= link_to icon("fas", "trash-alt"), category, method: :delete, data: { confirm: "You sure?" } %></td>
     </tr>

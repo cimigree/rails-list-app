@@ -10,6 +10,7 @@
   <thead>
     <tr>
       <th>Store</th>
+      <th># of Items</th>
       <th>Edit Store</th>
       <th>Delete Store</th>
     </tr>
@@ -18,6 +19,7 @@
     <%- @stores.each do |store| -%>
     <tr>
       <td><%= link_to store.name, store %></td>
+      <td><%= store.item_ids.count %></td>
       <td><%= link_to icon("fas", "pencil-alt"), edit_store_path(store) %></td>
       <td><%= link_to icon("fas", "trash-alt"), store, method: :delete, data: { confirm: "You sure?" }%></td>
     </tr>

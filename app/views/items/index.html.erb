@@ -1,36 +1,15 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-  <h2>Current Items</h2>
+  <h2>Items</h2>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
-      <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-secondary" %>
+      <%= link_to "Current Items", items_path(group_by: "current_items"), class: "btn btn-large btn-outline-info" %>
+      <%= link_to "All Items", items_path(group_by: "all_items"), class: "btn btn-large btn-outline-info" %>
+      <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-outline-info" %>
     </div>
   </div>
 </div>
-<table class="table table-striped clearance_batches">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Item</th>
-      <th>Brand</th>    
-      <th>Quantity</th>  
-      <th>Notes</th>
-      <th>Category</th>
-      <th>Edit Item</th>
-      <th>Delete Item</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%- @items.each do |item| -%>
-    <tr>
-      <td><%= link_to "Purchase", update_purchased_item_url(item), method: :put, class: "btn btn-sm btn-outline-secondary" %></td>
-      <td><%= item.name %></td>
-      <td><%= item.brand_name %></td>
-      <td><%= item.quantity %></td>
-      <td><%= item.note %></td>
-      <td><%= item.category ? item.category.name : ''  %></td>
-      <td><%= link_to icon("fas", "pencil-alt"), edit_item_path(item) %></td>
-      <td><%= link_to icon("fas", "trash-alt"), item, method: :delete, data: { confirm: "You sure?" } %></td>
-    </tr>
-    <%- end -%>
-  </tbody>
-</table>
+<% if params[:group_by] == "all_items" %>
+  <%= render partial: "items", locals: {items: @items} %>
+<% else params[:group_by] == "current_items" %>
+  <%= render partial: "items", locals: {items: @items.needed} %>
+<% end %>

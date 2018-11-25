@@ -31,3 +31,19 @@ body > .container {
 .error-message {
   color: #d9534f;
 }
+
+.highlighted-true {
+  background-color: #FFFB87;
+}
+
+.highlighted-false {
+  background-color: none;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration-line: none;
+}

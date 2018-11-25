@@ -3,11 +3,7 @@ class ItemsController < ApplicationController
   
   def index
     Frequency::ResetPurchased.process()
-    @items = Item.needed.includes(:category).order(name: :asc)
-  end
-
-  def items_all
-    @items = Item.all.includes(:category).order(name: :asc)
+    @items = Item.all.joins(:category).merge(Category.order(name: :asc))
   end
 
   def show
@@ -35,7 +31,11 @@ class ItemsController < ApplicationController
   end
 
   def update_purchased
-    @item.update_attributes({purchased: true, date_purchased: Date.today()})
+    unless @item.purchased
+      @item.update_attributes({purchased: true, date_purchased: Date.today()})
+    else
+      @item.update_attributes({purchased: false, date_purchased: nil})
+    end
     Frequency::CalcNextPurchaseDate.process(@item.id) if @item.purchased == true
     redirect_to items_url
   end

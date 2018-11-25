@@ -1,0 +1,32 @@
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Purchased</th>
+      <th>Item</th>
+      <th>Brand</th>    
+      <th>Quantity</th>  
+      <th>Notes</th>
+      <th>Category</th>
+      <th>Edit Item</th>
+      <th>Delete Item</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- items.each do |item| -%>
+    <tr class=<%= "highlighted-#{item.coupon}"%>>
+      <% if item.purchased %>
+        <td><%= link_to 'Add to List', update_purchased_item_url(item), method: :put, class: "btn btn-sm btn-outline-info" %></td>  
+      <% else %>
+        <td><%= link_to 'Purchase', update_purchased_item_url(item), method: :put, class: "btn btn-sm btn-info" %></td>
+      <% end %>
+      <td><%= link_to item.name, item %></td>
+      <td><%= item.brand_name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.note %></td>
+      <td><%= item.category ? item.category.name : ''  %></td>
+      <td><%= link_to icon("fas", "pencil-alt"), edit_item_path(item) %></td>
+      <td><%= link_to icon("fas", "trash-alt"), item, method: :delete, data: { confirm: "You sure?" } %></td>
+    </tr>
+    <%- end -%>
+  </tbody>
+</table>

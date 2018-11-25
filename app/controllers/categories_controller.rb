@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @items_by_category = @category.items
     @category
   end
 
