@@ -1,5 +1,9 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-  <h2>Items</h2>
+  <% if params[:group_by] == "all_items" %>
+  <h2>All Items</h2>
+  <% else params[:group_by] == "current_items" %>
+  <h2>Current Items</h2>
+  <% end %>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
       <%= link_to "Current Items", items_path(group_by: "current_items"), class: "btn btn-large btn-outline-info" %>
