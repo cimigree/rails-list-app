@@ -1,16 +1,11 @@
+<% provide(:path, items_path) %>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
   <% if params[:group_by] == "all_items" %>
   <h2>All Items</h2>
   <% else params[:group_by] == "current_items" %>
   <h2>Current Items</h2>
   <% end %>
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group mr-2">
-      <%= link_to "Current Items", items_path(group_by: "current_items"), class: "btn btn-large btn-outline-info" %>
-      <%= link_to "All Items", items_path(group_by: "all_items"), class: "btn btn-large btn-outline-info" %>
-      <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-outline-info" %>
-    </div>
-  </div>
+  <%= render 'shared/which_items' %>
 </div>
 <% if params[:group_by] == "all_items" %>
   <%= render partial: "items", locals: {items: @items} %>

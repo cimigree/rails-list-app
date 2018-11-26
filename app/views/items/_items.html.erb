@@ -2,8 +2,9 @@
   <thead class="thead-light">
     <tr>
       <th></th>
-      <th>Item</th>
-      <th>Brand</th>    
+      <th class="d-none d-sm-table-cell">Item</th>
+      <th class="d-none d-sm-table-cell">Brand</th> 
+      <th class="d-sm-table-cell d-sm-none">Item</th> 
       <th>Quantity</th>  
       <th class="d-none d-sm-table-cell">Notes</th>
       <th class="d-none d-sm-table-cell">Category</th>
@@ -19,8 +20,9 @@
       <% else %>
         <td><%= link_to 'Got', update_purchased_item_url(item), method: :put, class: "btn btn-sm btn-info" %></td>
       <% end %>
-      <td><%= link_to item.name, item %></td>
-      <td><%= item.brand_name %></td>
+      <td class="d-none d-sm-table-cell"><%= link_to item.name, item %></td>
+      <td class="d-none d-sm-table-cell"><%= item.brand_name %></td>
+      <td class="d-sm-table-cell d-sm-none"><%= link_to item.brand_name + ' ' + item.name, item %></td>
       <td><%= item.quantity %></td>
       <td class="d-none d-sm-table-cell"><%= item.note %></td>
       <td class="d-none d-sm-table-cell"><%= item.category ? item.category.name : ''  %></td>

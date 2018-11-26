@@ -1,4 +1,4 @@
-<h3 class="text-center">New Item</h3>
+<h2>New Item</h2>
 <div class="row">
   <div class="col-md-12">
   <%= form_for(@item, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -50,7 +50,7 @@
           <%= f.label :category %>
         </div>
         <div>
-          <%= f.collection_select :category_id, Category.all, :id, :name, {}, {class: "form-control"} %>
+          <%= f.collection_select :category_id, Category.all, :id, :name, {selected: @item.category_id || 15}, {class: "form-control"} %>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
           <%= f.label :store %>
         </div>
         <div>
-          <%= f.collection_select :store_ids, Store.all, :id, :name, {}, {multiple: true, class: "form-control"} %>
+          <%= f.collection_select :store_ids, Store.all, :id, :name, {selected: @item.store_ids[0] || 1}, {multiple: true, class: "form-control"} %>
         </div>
       </div>
     </div>
@@ -85,11 +85,15 @@
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <div class="col-md-offset-1 col-md-11">
-      <%= f.submit class: 'btn btn-primary btn-lg' %> 
+  <div class="row">
+    <div class="form-group col-4">
+      <div>
+        <%= f.submit class: 'btn btn-primary btn-lg' %> 
+      </div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
+    <div class="offset-3 offset-md-0 col-4">
+      <%= link_to 'Cancel', items_path, class: 'btn btn-secondary btn-lg' %> 
+    </div>
   </div>
 </div>

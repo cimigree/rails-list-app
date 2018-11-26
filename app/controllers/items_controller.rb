@@ -12,6 +12,18 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    if request.referer != nil
+      from_path_array = URI(request.referer).path.split("/")
+    else 
+      from_path_array = []
+    end
+    if from_path_array[1] == "stores" 
+      @item.store_ids = [from_path_array[2].to_i]
+    elsif from_path_array[1] == "categories"
+      @item.category_id = from_path_array[2].to_i
+    else
+      return
+    end
   end
 
   def create
@@ -37,7 +49,7 @@ class ItemsController < ApplicationController
       @item.update_attributes({purchased: false, date_purchased: nil})
     end
     Frequency::CalcNextPurchaseDate.process(@item.id) if @item.purchased == true
-    redirect_to items_url
+    redirect_to URI(request.referer).path
   end
 
   def update

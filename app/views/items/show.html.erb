@@ -1,4 +1,7 @@
-<h2><%= @item.name %></h2>
+<div class="row">
+  <h2 class="col"><%= @item.name %> </h2>
+  <%= link_to "Back to List", items_path, class: "col-xs-4 mr-2 btn btn-info" %>
+</div>
 <ul class="list-group list-group-flush">
   <li class="list-group-item"><strong>Brand:</strong> <%= @item.brand_name %></li>
   <li class="list-group-item"><strong>Quantity:</strong> <%= @item.quantity %></li>

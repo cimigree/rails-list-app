@@ -10,5 +10,5 @@ class Item < ApplicationRecord
 
   validates :frequency, inclusion: { in: ["weekly", "biweekly", "monthly", "as needed"], message: "%{value} is not a valid frequency" }
   validates :purchased, inclusion: { in: [true, false] }, allow_blank: true
-  validates :name, presence: { message: "Enter name"}
+  validates :name, presence: { message: "Enter name" }
 end

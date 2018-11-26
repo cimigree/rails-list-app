@@ -1,10 +1,13 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
   <h2><%= @category.name %></h2>
   <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group mr-2">
-      <%= link_to "Current Items", category_path(group_by: "current_items"), class: "btn btn-large btn-outline-info" %>
-      <%= link_to "All Items", category_path(group_by: "all_items"), class: "btn btn-large btn-outline-info" %>
-      <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-outline-info" %>
+    <div class="btn-group">
+      <%= link_to "Current Items", category_path(group_by: "current_items"), class: "btn btn-large btn-outline-info d-none d-sm-block" %>
+      <%= link_to "All Items", category_path(group_by: "all_items"), class: "btn btn-large btn-outline-info d-none d-sm-block" %>
+      <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-outline-info d-none d-sm-block" %>
+      <%= link_to "Current", category_path(group_by: "current_items"), class: "btn btn-sm btn-outline-info d-block d-sm-none" %>
+      <%= link_to "All", category_path(group_by: "all_items"), class: "btn btn-sm btn-outline-info d-block d-sm-none" %>
+      <%= link_to "New", new_item_path, class: "btn btn-sm btn-outline-info d-block d-sm-none" %>
     </div>
   </div>
 </div>

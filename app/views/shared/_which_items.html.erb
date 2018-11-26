@@ -1,0 +1,10 @@
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group">
+    <%= link_to "Current Items", items_path(group_by: "current_items"), class: "btn btn-large btn-outline-info d-none d-sm-block" %>
+    <%= link_to "All Items", items_path(group_by: "all_items"), class: "btn btn-large btn-outline-info d-none d-sm-block" %>
+    <%= link_to "Add New Item", new_item_path, class: "btn btn-large btn-outline-info d-none d-sm-block" %>
+    <%= link_to "Current", items_path(group_by: "current_items"), class: "btn btn-sm btn-outline-info d-block d-sm-none" %>
+    <%= link_to "All", items_path(group_by: "all_items"), class: "btn btn-sm btn-outline-info d-block d-sm-none" %>
+    <%= link_to "New", new_item_path, class: "btn btn-sm btn-outline-info d-block d-sm-none" %>
+  </div>
+</div>
