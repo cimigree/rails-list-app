@@ -12,7 +12,7 @@
   </div>
 </div>
 <% if params[:group_by] == "all_items" %>
-  <%= render partial: 'items/items', locals: {items: @items_by_category} %>
+  <%= render partial: 'items/items', locals: {items: @items_by_category, categories: [@category.name], display_category: false} %>
 <% else params[:group_by] == "current_items" %>
-  <%= render partial: 'items/items', locals: {items: @items_by_category.needed} %>
+  <%= render partial: 'items/items', locals: {items: @items_by_category.needed, categories: [@category.name], display_category: false} %>
 <% end %>

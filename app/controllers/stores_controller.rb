@@ -8,6 +8,9 @@ class StoresController < ApplicationController
   def show
     @items_by_store = @store.items.joins(:category).merge(Category.order(name: :asc))
     @store
+    categories = @store.items.joins(:category).select(:category_id).distinct.pluck(:category_id)
+    uniq_categories = categories.reject { |item| item.nil? }
+    @store_categories = uniq_categories.map { |uc| Category.find(uc).name }
   end
 
   def all_items

@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
   def index
     Frequency::ResetPurchased.process()
     @items = Item.all.joins(:category).merge(Category.order(name: :asc))
+    uniq_categories = Item.uniq_categories.reject { |item| item.nil? }
+    @item_categories = uniq_categories.map { |uc| Category.find(uc).name }
   end
 
   def show
@@ -49,7 +51,7 @@ class ItemsController < ApplicationController
       @item.update_attributes({purchased: false, date_purchased: nil})
     end
     Frequency::CalcNextPurchaseDate.process(@item.id) if @item.purchased == true
-    redirect_to URI(request.referer).path
+    redirect_back fallback_location: URI(request.referer).path
   end
 
   def update
@@ -68,7 +70,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     flash[:notice] = "Item deleted"
-    redirect_to items_url
+    redirect_back fallback_location: URI(request.referer).path
   end
 
   private
