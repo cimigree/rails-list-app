@@ -3,15 +3,16 @@
   <head>
     <title>RailsListApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
+      <%= render 'application/favicon' %>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <%= link_to "Items to Buy", root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

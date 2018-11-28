@@ -13,6 +13,7 @@ gem 'font-awesome-sass', '~> 5.5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 4.3'
 gem 'jquery-ui-rails', '~> 6.0'
+gem 'rails_real_favicon'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
