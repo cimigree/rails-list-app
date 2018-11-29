@@ -4,8 +4,8 @@ class ItemsController < ApplicationController
   def index
     Frequency::ResetPurchased.process()
     @items = Item.all.joins(:category).merge(Category.order(name: :asc))
-    uniq_categories = Item.where("purchased=false").distinct.pluck(:category_id).compact!
-    @item_categories_needed = uniq_categories.map { |uc| Category.find(uc).name }.sort
+    uniq_categories_needed = Item.where("purchased=false").distinct.pluck(:category_id).compact!
+    @item_categories_needed = uniq_categories_needed.map { |uc| Category.find(uc).name }.sort
     uniq_categories = Item.distinct.pluck(:category_id).compact!
     @item_categories = uniq_categories.map { |uc| Category.find(uc).name }.sort
   end
