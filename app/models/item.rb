@@ -4,7 +4,6 @@ class Item < ApplicationRecord
   belongs_to :category, optional: :true
 
   scope :needed, -> { where(purchased: false) }
-  scope :uniq_categories, -> { select(:category_id).distinct.pluck(:category_id) }
 
   accepts_nested_attributes_for :item_stores
   accepts_nested_attributes_for :stores
