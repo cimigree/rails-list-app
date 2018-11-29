@@ -4,10 +4,10 @@ class ItemsController < ApplicationController
   def index
     Frequency::ResetPurchased.process()
     @items = Item.all.joins(:category).merge(Category.order(name: :asc))
-    uniq_categories_needed = Item.where("purchased=false").distinct.pluck(:category_id).compact!
-    @item_categories_needed = uniq_categories_needed.map { |uc| Category.find(uc).name }.sort
-    uniq_categories = Item.distinct.pluck(:category_id).compact!
-    @item_categories = uniq_categories.map { |uc| Category.find(uc).name }.sort
+    # is this way any better performance wise? 
+    # @other_way = Item.select('items.*, categories.name').joins(:category).order('categories.name ASC')
+    @item_categories_needed = @items.where("items.purchased=false").distinct.pluck('categories.name').sort
+    @item_categories = @items.distinct.pluck('categories.name').sort
   end
 
   def show

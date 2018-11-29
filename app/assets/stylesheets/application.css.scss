@@ -47,3 +47,12 @@ a {
 a:hover {
   text-decoration-line: none;
 }
+
+@media (max-width: 536px) {
+  // .back-to-button {
+  //   height: 25%;
+  // }
+  .show-item-name {
+    font-size: 1.5em;
+  }
+}

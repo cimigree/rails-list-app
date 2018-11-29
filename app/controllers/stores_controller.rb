@@ -8,10 +8,8 @@ class StoresController < ApplicationController
   def show
     @items_by_store = @store.items.joins(:category).merge(Category.order(name: :asc))
     @store
-    categories_needed = @store.items.where("purchased=false").distinct.pluck(:category_id).compact!
-    @store_categories_needed = categories_needed.map { |c| Category.find(c).name }
-    categories = @store.items.distinct.pluck(:category_id).compact!
-    @store_categories = categories.map { |c| Category.find(c).name }
+    @store_categories_needed = @items_by_store.where("purchased=false").distinct.pluck('categories.name').sort
+    @store_categories = @items_by_store.distinct.pluck('categories.name').sort
   end
 
   def all_items
