@@ -30,7 +30,11 @@
             <% end %>
               <td class="d-none d-sm-table-cell"><%= link_to item.name, item %></td>
               <td class="d-none d-sm-table-cell"><%= item.brand_name %></td>
-              <td class="d-table-cell d-sm-none"><%= link_to item.brand_name + ' ' + item.name, item %></td>
+              <td class="d-sm-none d-table-cell"><%= link_to item.brand_name + ' ' + item.name, item %>
+              <%-if item.note.present?-%>
+                <span class="d-sm-none d-inline-block">*</span>
+              <%- end -%>
+              </td>
               <td><%= item.quantity %></td>
               <td class="d-none d-sm-table-cell"><%= item.note %></td>
               <td class="d-none d-sm-table-cell"><%= item.category ? item.category.name : ''  %></td>

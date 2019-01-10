@@ -1,18 +1,23 @@
+
+<div class="card no-border">
 <div class="row">
-  <h2 class="col show-item-name"><%= @item.name %> </h2>
+  <h4 class="col show-item-name"><%= @item.name %> </h4>
   <%= link_to "Back to List", items_path, class: "col-xs-4 mr-2 mb-2 btn btn-info back-to-button" %>
 </div>
-<ul class="list-group list-group-flush">
-  <li class="row justify-content-around">
-    <span class="list-group-item no-border"><%= link_to icon("fas", "pencil-alt"), edit_item_path(@item) %></span>
-    <span class="list-group-item no-border"><%= link_to icon("fas", "trash-alt"), @item, method: :delete, data: { confirm: "You sure?" } %></span>
-  </li>
-  <li class="list-group-item no-border"><strong>Brand:</strong> <%= @item.brand_name %></li>
-  <li class="list-group-item no-border"><strong>Quantity:</strong> <%= @item.quantity %></li>
-  <li class="list-group-item no-border"><strong>Note:</strong> <%= @item.note %></li>
-  <li class="list-group-item no-border"><strong>Category:</strong> <%= @item.category ? @item.category.name : '' %></li>
-  <li class="list-group-item no-border"><strong>Frequency:</strong> <%= @item.frequency %></li>
-  <li class="list-group-item no-border"><strong>Coupon:</strong> <%= @item.coupon ? "Yes" : "No" %></li>
-  <li class="list-group-item no-border"><strong>Purchased:</strong> <%= @item.purchased ? "Yes" : "Not yet" %></li>
-  
-</ul>
+
+  <ul class="list-group list-group-flush">
+    <li class="d-sm-none row justify-content-around">
+    <li class="d-sm-flex row">
+      <span class="list-group-item no-border"><%= link_to icon("fas", "pencil-alt"), edit_item_path(@item) %></span>
+      <span class="list-group-item no-border"><%= link_to icon("fas", "trash-alt"), @item, method: :delete, data: { confirm: "You sure?" } %></span>
+    </li>
+    <li class="list-group-item no-border"><strong>Brand:</strong> <%= @item.brand_name %></li>
+    <li class="list-group-item no-border"><strong>Quantity:</strong> <%= @item.quantity %></li>
+    <li class="list-group-item no-border"><strong>Note:</strong> <%= @item.note %></li>
+    <li class="list-group-item no-border"><strong>Category:</strong> <%= @item.category ? @item.category.name : '' %></li>
+    <li class="list-group-item no-border"><strong>Frequency:</strong> <%= @item.frequency %></li>
+    <li class="list-group-item no-border"><strong>Coupon:</strong> <%= @item.coupon ? "Yes" : "No" %></li>
+    <li class="list-group-item no-border"><strong>Purchased:</strong> <%= @item.purchased ? "Yes" : "Not yet" %></li>
+    
+  </ul>
+</div>
