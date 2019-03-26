@@ -4,11 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.2.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap', '~> 4.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'font-awesome-sass', '~> 5.5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 4.3'
